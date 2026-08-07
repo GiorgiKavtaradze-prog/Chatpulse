@@ -15,7 +15,6 @@ const AuthSync = () => {
 
       syncUser(undefined, {
         onSuccess: (data) => {
-          console.log("✅ User synced with backend:", data.name);
           Sentry.logger.info(
             Sentry.logger.fmt`User synced with backend: ${data.name}`,
             {
@@ -25,7 +24,6 @@ const AuthSync = () => {
           );
         },
         onError: (error) => {
-          console.log("❌ User sync failed for the user:", error);
           Sentry.logger.error("Failed to sync user with backend", {
             userId: user.id,
             error: error instanceof Error ? error.message : String(error),

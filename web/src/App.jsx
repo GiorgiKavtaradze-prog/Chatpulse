@@ -13,8 +13,14 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={!isSignedIn ? <HomePage /> : <Navigate to={"/chat"} />} />
-      <Route path="/chat" element={isSignedIn ? <ChatPage /> : <Navigate to={"/"} />} />
+      <Route
+        path="/"
+        element={!isSignedIn ? <HomePage /> : <Navigate to={"/chat"} />}
+      />
+      <Route
+        path="/chat"
+        element={isSignedIn ? <ChatPage /> : <Navigate to={"/"} />}
+      />
     </Routes>
   );
 }
