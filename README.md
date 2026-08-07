@@ -1,24 +1,6 @@
-<h1 align="center">✨Chatpulse Full-Stack Realtime Chat App ✨</h1>
+<h1 align="center">✨ Chatpulse — Full-Stack Realtime Chat App ✨</h1>
 
 ![Screenshot](web/public/thumbnail.jpg)
-
-<p align="center">
-  <a href="https://github.com/1234Giorgi/opaa">
-    <img src="https://img.shields.io/github/v/repo/1234Giorgi/opaa?color=6366F1&label=Latest%20Release&style=for-the-badge" alt="Latest Release" />
-  </a>
-  <a href="https://github.com/1234Giorgi/opaa/blob/main/LICENSE">
-    <img src="https://img.shields.io/github/license/1234Giorgi/opaa?color=10B981&style=for-the-badge" alt="License" />
-  </a>
-  <a href="https://github.com/1234Giorgi/opaa/stargazers">
-    <img src="https://img.shields.io/github/stars/1234Giorgi/opaa?color=F59E0B&style=for-the-badge" alt="Stars" />
-  </a>
-  <a href="https://github.com/1234Giorgi/opaa/issues">
-    <img src="https://img.shields.io/github/issues/1234Giorgi/opaa?color=EF4444&style=for-the-badge" alt="Issues" />
-  </a>
-  <a href="https://github.com/1234Giorgi/opaa/commits/main">
-    <img src="https://img.shields.io/github/last-commit/1234Giorgi/opaa?color=06B6D4&style=for-the-badge" alt="Last Commit" />
-  </a>
-</p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/TypeScript-3178C2?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
@@ -34,12 +16,9 @@
   <img src="https://img.shields.io/badge/Docker-2496EB?style=for-the-badge&logo=docker&logoColor=white" alt="Docker" />
   <img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white" alt="Vite" />
   <img src="https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="Tailwind CSS" />
-</p>
-
-<p align="center">
-  <img src="https://img.shields.io/github/commit-activity/t/1234Giorgi/opaa?color=8B5CF6&style=for-the-badge" alt="Commit Activity" />
-  <img src="https://img.shields.io/github/repo-size/1234Giorgi/opaa?color=3B82F6&style=for-the-badge" alt="Repo Size" />
-  <img src="https://img.shields.io/badge/PRs-Welcome-10B981?style=for-the-badge&logo=pull-request" alt="PRs Welcome" />
+  <img src="https://img.shields.io/badge/NativeWind-38BDF8?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="NativeWind" />
+  <img src="https://img.shields.io/badge/Zustand-764ABC?style=for-the-badge&logo=zustand&logoColor=white" alt="Zustand" />
+  <img src="https://img.shields.io/badge/TanStack_Query-FF4154?style=for-the-badge&logo=react-query&logoColor=white" alt="TanStack Query" />
 </p>
 
 ---
@@ -132,7 +111,9 @@ flowchart TB
 | 🛠️ **REST API**             | Well-structured REST endpoints for chats, messages, and users |
 | 🧪 **Error Monitoring**     | Sentry integration for crash reporting & performance tracing  |
 | 🚀 **Docker Ready**         | Multi-stage Dockerfile for production deployment              |
-| 🌱 **DevOps Ready**         | Feature branches, PRs, automated code reviews with CodeRabbit |
+| 🔔 **Unread Badges**        | Unread message tracking on mobile chat list                   |
+| 🔍 **User Search**          | Find users by name or email to start new conversations        |
+| 👤 **Profile Screen**       | Account settings, preferences, and sign-out (mobile)          |
 
 ### Real-Time Capabilities
 
@@ -150,7 +131,9 @@ flowchart TB
 ```
 Chatpulse/
 ├── backend/              # Express + MongoDB + Socket.IO API
+│   ├── index.ts          # Server entry point (HTTP + Socket.IO)
 │   ├── src/
+│   │   ├── app.ts        # Express app configuration
 │   │   ├── config/       # Database configuration
 │   │   ├── controllers/  # Route controllers (auth, chat, message, user)
 │   │   ├── middleware/   # Auth & error handling middleware
@@ -158,7 +141,7 @@ Chatpulse/
 │   │   ├── routes/       # REST API routes
 │   │   ├── scripts/      # Database seeding
 │   │   └── utils/        # Socket.IO server setup
-│   ├── index.ts          # Server entry point
+│   ├── types/            # Global type declarations
 │   └── tsconfig.json
 ├── web/                  # React + Vite web client
 │   ├── src/
@@ -211,20 +194,29 @@ Chatpulse/
 | **Socket.IO Client** | Real-time communication        |
 | **Clerk React**      | Authentication                 |
 | **React Router**     | Client-side routing            |
+| **Zustand**          | Lightweight global state       |
+| **Axios**            | HTTP client                    |
+| **lucide-react**     | Icon library                   |
 
 ### Mobile
 
-| Technology           | Purpose                            |
-| -------------------- | ---------------------------------- |
-| **React Native**     | Cross-platform mobile framework    |
-| **Expo**             | Toolchain & dev platform           |
-| **NativeWind**       | Tailwind CSS for React Native      |
-| **Expo Router**      | File-based routing                 |
-| **TanStack Query**   | Server state management            |
-| **Socket.IO Client** | Real-time communication            |
-| **Clerk Expo**       | Authentication                     |
-| **Sentry**           | Error monitoring & crash reporting |
-| **date-fns**         | Date formatting                    |
+| Technology               | Purpose                            |
+| ------------------------ | ---------------------------------- |
+| **React Native**         | Cross-platform mobile framework    |
+| **Expo SDK 54**          | Toolchain & dev platform           |
+| **NativeWind**           | Tailwind CSS for React Native      |
+| **Expo Router**          | File-based routing                 |
+| **TanStack Query**       | Server state management            |
+| **Socket.IO Client**     | Real-time communication            |
+| **Clerk Expo**           | Authentication                     |
+| **Sentry**               | Error monitoring & crash reporting |
+| **Zustand**              | Lightweight global state           |
+| **date-fns**             | Date formatting                    |
+| **expo-blur**            | Blur effects for auth screen       |
+| **expo-linear-gradient** | Gradient backgrounds               |
+| **expo-haptics**         | Haptic feedback                    |
+| **expo-image**           | Optimized image loading            |
+| **expo-secure-store**    | Secure token storage               |
 
 ---
 
@@ -277,9 +269,6 @@ VITE_CLERK_PUBLISHABLE_KEY=<YOUR_CLERK_PUBLISHABLE_KEY>
 
 # API
 VITE_API_URL=http://localhost:3000
-
-# Sentry (optional)
-VITE_SENTRY_DSN=<YOUR_SENTRY_DSN>
 ```
 
 #### Mobile (`/mobile`)
@@ -293,6 +282,8 @@ EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY=<YOUR_CLERK_PUBLISHABLE_KEY>
 # Sentry (optional)
 SENTRY_AUTH_TOKEN=<YOUR_SENTRY_AUTH_TOKEN>
 ```
+
+> **Note:** The mobile app currently uses hardcoded API and Socket URLs (`https://chatpulse-ijeje.sevalla.app`). Update these in `mobile/lib/axios.ts` and `mobile/lib/socket.ts` to point to your backend.
 
 ### 3. Install Dependencies
 
@@ -411,7 +402,7 @@ npm run ios
 
 ## 🌱 Seeding the Database
 
-The backend includes a seed script to populate the database with test users:
+The backend includes a seed script to populate the database with 10 test users:
 
 ```bash
 cd backend
@@ -428,7 +419,7 @@ The project includes a multi-stage Dockerfile that builds both the web frontend 
 
 ```bash
 # Build the Docker image
-docker build -t Chatpulse-app \
+docker build -t chatpulse-app \
   --build-arg VITE_CLERK_PUBLISHABLE_KEY=<YOUR_CLERK_PUBLISHABLE_KEY> \
   --build-arg VITE_API_URL=<YOUR_DEPLOYED_API_URL> \
   .
@@ -438,39 +429,7 @@ docker run -p 3000:3000 \
   -e MONGODB_URI=<YOUR_MONGO_URI> \
   -e CLERK_SECRET_KEY=<YOUR_CLERK_SECRET_KEY> \
   -e FRONTEND_URL=<YOUR_DEPLOYED_URL> \
-  Chatpulse-app
-```
-
-### Docker Compose (Optional)
-
-You can also use Docker Compose for local development:
-
-```yaml
-# docker-compose.yml
-version: "3.8"
-services:
-  backend:
-    build: .
-    ports:
-      - "3000:3000"
-    env_file:
-      - backend/.env
-    depends_on:
-      - mongodb
-
-  mongodb:
-    image: mongo:7
-    ports:
-      - "27017:27017"
-    volumes:
-      - mongo-data:/data/db
-
-volumes:
-  mongo-data:
-```
-
-```bash
-docker-compose up --build
+  chatpulse-app
 ```
 
 ---
@@ -482,8 +441,7 @@ This project follows a modern Git workflow:
 1. **Feature Branches** — Create a new branch for each feature
 2. **Commits** — Write clear, descriptive commit messages
 3. **Pull Requests** — Submit PRs for review
-4. **CodeRabbit** — Automated code reviews
-5. **Merge** — Merge after approval
+4. **Merge** — Merge after approval
 
 ### Recommended Git Workflow
 
@@ -587,7 +545,7 @@ mobile/
 │   ├── _layout.tsx       # Root layout (providers, Sentry)
 │   ├── (auth)/
 │   │   ├── _layout.tsx
-│   │   └── index.tsx     # Auth screen
+│   │   └── index.tsx     # Auth screen (Google/Apple social login)
 │   ├── (tabs)/
 │   │   ├── _layout.tsx   # Tab navigation
 │   │   ├── index.tsx     # Chats list
@@ -670,7 +628,7 @@ FRONTEND_URL=http://localhost:5173
 
 #### Socket.IO Connection Issues
 
-- Verify the `VITE_API_URL` (web) or `SOCKET_URL` (mobile) points to your backend
+- Verify the `VITE_API_URL` (web) or the hardcoded URL in `mobile/lib/socket.ts` points to your backend
 - Check that the Clerk publishable key is set correctly
 - Ensure the backend is running and accessible
 
@@ -690,6 +648,7 @@ FRONTEND_URL=http://localhost:5173
 - [Expo Documentation](https://docs.expo.dev/)
 - [React Documentation](https://react.dev/)
 - [Tailwind CSS Documentation](https://tailwindcss.com/docs)
+- [NativeWind Documentation](https://www.nativewind.dev/)
 - [Sentry Documentation](https://docs.sentry.io/)
 
 ---
@@ -714,8 +673,8 @@ Contributions are welcome! Please follow these steps:
 - [Expo](https://expo.dev/) — Mobile development platform
 - [Vite](https://vitejs.dev/) — Build tooling
 - [Tailwind CSS](https://tailwindcss.com/) — Styling
+- [NativeWind](https://www.nativewind.dev/) — Tailwind for React Native
 - [Sentry](https://sentry.io/) — Error monitoring
-- [CodeRabbit](https://coderabbit.ai/) — Automated code reviews
 
 ---
 
