@@ -37,7 +37,7 @@ export function AnimatedOrb({
         withTiming(-30, { duration, easing }),
         withTiming(0, { duration, easing }),
       ),
-      -1, // infinite
+      -1,
     );
 
     translateY.value = withRepeat(

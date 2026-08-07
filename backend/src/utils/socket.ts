@@ -1,4 +1,4 @@
-import { Socket, Server as SocketServer } from "socket.io";
+import { Server as SocketServer } from "socket.io";
 import { Server as HttpServer } from "http";
 import { verifyToken } from "@clerk/express";
 import { Message } from "../models/Message";
@@ -6,7 +6,6 @@ import { Chat } from "../models/Chat";
 import { User } from "../models/User";
 
 export const onlineUsers: Map<string, string> = new Map();
-
 export const initializeSocket = (httpServer: HttpServer) => {
   const allowedOrigins = [
     "http://localhost:8081",

@@ -14,8 +14,7 @@ import { ChatInput } from "../components/ChatInput";
 import { useCurrentUser } from "../hooks/useCurrentUser";
 import { NewChatModal } from "../components/NewChatModal";
 
-// this code can be a lot cleaner, but here we try to keep it simple yet working
-// feel free to refactor it as you wish ✨
+
 function ChatPage() {
   const { data: currentUser } = useCurrentUser();
 
@@ -37,7 +36,6 @@ function ChatPage() {
     useMessages(activeChatId);
   const startChatMutation = useGetOrCreateChat();
 
-  // scroll to bottom when chat or messages changes
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [activeChatId, messages]);
@@ -74,9 +72,7 @@ function ChatPage() {
 
   return (
     <div className="h-screen bg-base-100 text-base-content flex">
-      {/* Sidebar */}
       <div className="w-80 border-r border-base-300 flex flex-col bg-base-200">
-        {/* HEADER */}
         <div className="p-4 border-b border-base-300">
           <div className="flex items-center justify-between mb-4">
             <Link to="/chat" className="flex items-center gap-2">
@@ -99,17 +95,13 @@ function ChatPage() {
             New Chat
           </button>
         </div>
-
-        {/* chat list */}
         <div className="flex-1 overflow-y-auto">
           {chatsLoading && (
             <div className="flex items-center justify-center py-8">
               <span className="loading loading-spinner loading-sm text-amber-400" />
             </div>
           )}
-
           {chats.length === 0 && !chatsLoading && <NoConversationsUI />}
-
           <div className="flex flex-col gap-1">
             {chats.map((chat) => (
               <ChatListItem
@@ -122,8 +114,6 @@ function ChatPage() {
           </div>
         </div>
       </div>
-
-      {/* main chat area */}
       <div className="flex-1 flex flex-col">
         {activeChatId && activeChat ? (
           <>
@@ -131,17 +121,13 @@ function ChatPage() {
               participant={activeChat.participant}
               chatId={activeChatId}
             />
-
-            {/* messages */}
             <div className="flex-1 overflow-y-auto p-6 space-y-4">
               {messagesLoading && (
                 <div className="flex items-center justify-center h-full">
                   <span className="loading loading-spinner loading-md text-amber-400" />
                 </div>
               )}
-
               {messages.length === 0 && !messagesLoading && <NoMessagesUI />}
-
               {messages.length > 0 &&
                 messages.map((msg) => (
                   <MessageBubble
@@ -153,7 +139,6 @@ function ChatPage() {
 
               <div ref={messagesEndRef} />
             </div>
-
             <ChatInput
               value={messageInput}
               onChange={handleTyping}
@@ -165,7 +150,6 @@ function ChatPage() {
           <NoChatSelectedUI />
         )}
       </div>
-
       <NewChatModal
         onStartChat={handleStartChat}
         isPending={startChatMutation.isPending}

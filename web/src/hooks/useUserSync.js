@@ -18,7 +18,7 @@ function useUserSync() {
         {},
         {
           headers: { Authorization: `Bearer ${token}` },
-        }
+        },
       );
       return res.data;
     },

@@ -9,7 +9,6 @@ export const useSocketConnection = (activeChatId) => {
 
   const { socket, connect, disconnect, joinChat, leaveChat } = useSocketStore();
 
-  // connect socket on mount
   useEffect(() => {
     if (isSignedIn) {
       getToken().then((token) => {
@@ -24,7 +23,6 @@ export const useSocketConnection = (activeChatId) => {
     };
   }, [isSignedIn, connect, disconnect, getToken, queryClient]);
 
-  // join/leave chat rooms - if you have a chatid in the url this will run
   useEffect(() => {
     if (activeChatId && socket) {
       joinChat(activeChatId);

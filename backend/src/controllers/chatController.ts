@@ -10,12 +10,10 @@ export async function getChats(
 ) {
   try {
     const userId = req.userId;
-
     const chats = await Chat.find({ participants: userId })
       .populate("participants", "name email avatar")
       .populate("lastMessage")
       .sort({ lastMessageAt: -1 });
-
     const formattedChats = chats.map((chat) => {
       const otherParticipant = chat.participants.find(
         (p) => p._id.toString() !== userId,

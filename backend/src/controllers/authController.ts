@@ -10,7 +10,6 @@ export async function getMe(
 ) {
   try {
     const userId = req.userId;
-
     const user = await User.findById(userId);
 
     if (!user) {

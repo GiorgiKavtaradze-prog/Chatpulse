@@ -6,29 +6,15 @@ const SOCKET_URL = import.meta.env.VITE_API_URL;
 export const useSocketStore = create((set, get) => ({
   socket: null,
   onlineUsers: new Set(),
-  typingUsers: new Map(), // chatId -> userId
+  typingUsers: new Map(),
   queryClient: null,
 
   connect: (token, queryClient) => {
     const existingSocket = get().socket;
     if (existingSocket?.connected || !queryClient) return;
-
-    // disconnect existing socket if any
     if (existingSocket) existingSocket.disconnect();
 
     const socket = io(SOCKET_URL, { auth: { token } });
-
-    socket.on("connect", () => {
-      console.log("Socket connected:", socket.id);
-    });
-
-    socket.on("connect_error", (error) => {
-      console.error("Socket connection error:", error.message);
-    });
-
-    socket.on("socket-error", (error) => {
-      console.error("Socket error:", error);
-    });
 
     socket.on("online-users", ({ userIds }) => {
       set({ onlineUsers: new Set(userIds) });
@@ -59,17 +45,12 @@ export const useSocketStore = create((set, get) => ({
 
     socket.on("new-message", (message) => {
       const senderId = message.sender?._id;
-
-      // update messages in current chat, replacing optimistic messages
       queryClient.setQueryData(["messages", message.chat], (old) => {
         if (!old) return [message];
-        // remove any optimistic messages (temp IDs) and add the real one
         const filtered = old.filter((m) => !m._id.startsWith("temp-"));
         const exists = filtered.some((m) => m._id === message._id);
         return exists ? filtered : [...filtered, message];
       });
-
-      // update chat's lastMessage directly for instant UI update
       queryClient.setQueryData(["chats"], (oldChats) => {
         return oldChats?.map((chat) => {
           if (chat._id === message.chat) {
@@ -88,7 +69,6 @@ export const useSocketStore = create((set, get) => ({
         });
       });
 
-      // clear typing indicator when message received
       set((state) => {
         const typingUsers = new Map(state.typingUsers);
         typingUsers.delete(message.chat);
@@ -124,7 +104,6 @@ export const useSocketStore = create((set, get) => ({
     const { socket, queryClient } = get();
     if (!socket?.connected || !queryClient) return;
 
-    // create optimistic message
     const tempId = `temp-${Date.now()}`;
     const optimisticMessage = {
       _id: tempId,
@@ -139,16 +118,13 @@ export const useSocketStore = create((set, get) => ({
       createdAt: new Date().toISOString(),
     };
 
-    // add optimistic message immediately
     queryClient.setQueryData(["messages", chatId], (old) => {
       if (!old) return [optimisticMessage];
       return [...old, optimisticMessage];
     });
 
-    // emit to server
     socket.emit("send-message", { chatId, text });
 
-    // handle errors - remove optimistic message if send fails
     socket.once("socket-error", () => {
       queryClient.setQueryData(["messages", chatId], (old) => {
         if (!old) return [];
